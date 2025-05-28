@@ -1,4 +1,5 @@
 import Header from './components/Header'
+import Footer from './components/Footer'
 import Hero from './sections/Hero'
 import Services from './sections/Services'
 import Gallery from './sections/Gallery'
@@ -16,7 +17,9 @@ function App() {
         <About />
         <Contact />
       </main>
+      <Footer />
     </>
+
   )
 }
 
