@@ -1,0 +1,9 @@
+{
+    "type": "Mariage",
+    "date": "2025-07-20",
+    "lieu": "Paris, Le Perchoir",
+    "nombre": 100,
+    "message": "Bonjour, je souhaite organiser un mariage en juillet.",
+    "from": "client@yopmail.com"
+  }
+  

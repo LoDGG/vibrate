@@ -1,30 +1,53 @@
-# Logs
-logs
+# Global
+.DS_Store
+Thumbs.db
 *.log
+.env
+
+# Node.js
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Vite (frontend)
+frontend/dist/
+frontend/.vite/
+frontend/.env.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# React build
+frontend/build/
 
-# Node
-node_modules/
-dist/
-.env
-.vitepress/
+# Editor / OS configs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and debug
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+*.lcov
+
+# Output of tests
+test-results/
+
+# System files
+*.swp
+*.bak
+*.tmp
+*.orig
+
+# Backend build/cache
+backend/.env
+backend/node_modules/
+backend/dist/
+backend/*.log
+
+# Email credentials
+backend/.env
