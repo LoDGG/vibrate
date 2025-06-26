@@ -11,6 +11,7 @@ dotenv.config();
 const app = express();
 
 // Middleware
+globalThis.__VIBRATE_API_PREFIX = "/api/contact"; // For clarity in future scaling
 app.use(cors());
 app.use(express.json());
 
