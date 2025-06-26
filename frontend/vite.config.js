@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     ViteFaviconsPlugin({
-      logo: './public/celebrise_logo.png',
+      logo: './public/vibrate_logo.png',
       inject: true,
     }),
   ],
