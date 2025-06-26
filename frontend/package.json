@@ -29,6 +29,8 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.3",
     "vite": "^6.3.5",
-    "vite-plugin-favicon2": "^1.1.5"
+    "vite-plugin-favicon2": "^1.1.5",
+    "yet-another-react-lightbox": "^1.1.0"
   }
+
 }
