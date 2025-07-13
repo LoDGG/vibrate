@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo "🚀 Déploiement de Celebrise en cours..."
+echo "🚀 Déploiement de Vibrate en cours..."
 
 # Se placer dans le dossier du projet
-cd ~/vibrate_website/celebrise || { echo "❌ Dossier projet introuvable"; exit 1; }
+cd ~/vibrate_website/vibrate || { echo "❌ Dossier projet introuvable"; exit 1; }
 
 echo "📥 Pull depuis Git..."
 git pull || { echo "❌ Échec du git pull"; exit 1; }
@@ -21,7 +21,7 @@ echo "🔨 Build du frontend..."
 npm run build || { echo "❌ Build frontend échoué"; exit 1; }
 
 echo "♻️ Redémarrage du serveur frontend avec PM2..."
-pm2 restart celebrise-frontend
+pm2 restart vibrate-frontend
 
 # === BACKEND ===
 echo "🧠 Mise à jour du backend..."
@@ -33,6 +33,6 @@ if [ -f package.json ]; then
 fi
 
 echo "♻️ Redémarrage du serveur backend avec PM2..."
-pm2 restart celebrise-backend
+pm2 restart vibrate-backend
 
 echo "✅ Déploiement terminé avec succès !"
