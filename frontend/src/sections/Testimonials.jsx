@@ -13,84 +13,44 @@ const Testimonials = () => {
       date: "Mai 2025",
       eventType: "Mariage",
       quote: "Une soirée magique ! L'ambiance était parfaite du cocktail jusqu'au bout de la nuit. Nos invités en parlent encore.",
-      gallery: [
-        {
-          src: "assets/gallery/mariage-marie-1.jpg",
-          thumb: "assets/gallery/mariage-marie-1-thumb.jpg",
-          alt: "Première danse des mariés",
-          type: "image"
-        },
-        {
-          src: "assets/gallery/mariage-marie-2.jpg",
-          thumb: "assets/gallery/mariage-marie-2-thumb.jpg",
-          alt: "Ambiance soirée dansante",
-          type: "image"
-        },
-        {
-          src: "assets/gallery/mariage-marie-3.jpg",
-          thumb: "assets/gallery/mariage-marie-3-thumb.jpg",
-          alt: "Installation DJ et jeux de lumière",
-          type: "image"
-        }
-      ]
+
     },
     {
       firstName: "Thomas",
       date: "Avril 2025",
       eventType: "Soirée d'entreprise",
       quote: "Un professionnalisme remarquable. La transition entre les moments calmes et festifs était parfaitement orchestrée.",
-      gallery: [
-        {
-          src: "assets/gallery/corporate-thomas-1.jpg",
-          thumb: "assets/gallery/corporate-thomas-1-thumb.jpg",
-          alt: "Cocktail d'entreprise",
-          type: "image"
-        },
-        {
-          src: "assets/gallery/corporate-thomas-2.jpg",
-          thumb: "assets/gallery/corporate-thomas-2-thumb.jpg",
-          alt: "Animation karaoké",
-          type: "image"
-        },
-        {
-          src: "assets/gallery/pro_3.mp4",
 
-          alt: "Soirée dansante",
-          type: "video"
-        }
-      ]
     },
     {
-      firstName: "Sophie",
+      firstName: "Sandrine",
       date: "Mars 2025",
       eventType: "Anniversaire",
-      quote: "Une ambiance incroyable pour mes 30 ans ! Tout était parfait, de la playlist personnalisée aux jeux de lumière."
+      quote: "Une ambiance incroyable pour mon seminaire ! Tout était parfait, de la playlist personnalisée aux jeux de lumière.",
+      gallery: [
+        {
+          src: "assets/gallery/Pro/guinot/pro_1.mp4",
+          alt: "Show lumière",
+          type: "video"
+        },
+        {
+          src: "assets/gallery/Pro/guinot/pro_2.mp4",
+          alt: "Show lumière",
+          type: "video"
+        },
+        {
+          src: "assets/gallery/Pro/guinot/pro_3.mp4",
+          alt: "Show lumière",
+          type: "video"
+        },
+      ]
     },
     {
       firstName: "Lucas",
       date: "Février 2025",
       eventType: "Mariage",
       quote: "Une équipe à l'écoute qui a su s'adapter à nos demandes tout au long de la soirée. Un grand merci !",
-      gallery: [
-        {
-          src: "assets/gallery/mariage-lucas-1.webp",
-          thumb: "assets/gallery/mariage-lucas-1-thumb.webp",
-          alt: "Entrée des mariés",
-          type: "image"
-        },
-        {
-          src: "assets/gallery/mariage-lucas-2.jpg",
-          thumb: "assets/gallery/mariage-lucas-2-thumb.jpg",
-          alt: "Dancefloor en action",
-          type: "image"
-        },
-        {
-          src: "assets/gallery/mariage-lucas-4.jpg",
-          thumb: "assets/gallery/mariage-lucas-4-thumb.jpg",
-          alt: "Show lumière",
-          type: "image"
-        }
-      ]
+
     },
     {
       firstName: "Emma",
