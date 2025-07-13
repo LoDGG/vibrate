@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
+import VideoLightbox from "../components/VideoLightbox";
+import VideoThumbnail from "../components/VideoThumbnail";
 
 const Testimonials = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(-1);
-  const [currentGallery, setCurrentGallery] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const testimonials = [
     {
@@ -18,17 +17,20 @@ const Testimonials = () => {
         {
           src: "assets/gallery/mariage-marie-1.jpg",
           thumb: "assets/gallery/mariage-marie-1-thumb.jpg",
-          alt: "Première danse des mariés"
+          alt: "Première danse des mariés",
+          type: "image"
         },
         {
           src: "assets/gallery/mariage-marie-2.jpg",
           thumb: "assets/gallery/mariage-marie-2-thumb.jpg",
-          alt: "Ambiance soirée dansante"
+          alt: "Ambiance soirée dansante",
+          type: "image"
         },
         {
           src: "assets/gallery/mariage-marie-3.jpg",
           thumb: "assets/gallery/mariage-marie-3-thumb.jpg",
-          alt: "Installation DJ et jeux de lumière"
+          alt: "Installation DJ et jeux de lumière",
+          type: "image"
         }
       ]
     },
@@ -41,17 +43,20 @@ const Testimonials = () => {
         {
           src: "assets/gallery/corporate-thomas-1.jpg",
           thumb: "assets/gallery/corporate-thomas-1-thumb.jpg",
-          alt: "Cocktail d'entreprise"
+          alt: "Cocktail d'entreprise",
+          type: "image"
         },
         {
           src: "assets/gallery/corporate-thomas-2.jpg",
           thumb: "assets/gallery/corporate-thomas-2-thumb.jpg",
-          alt: "Animation karaoké"
+          alt: "Animation karaoké",
+          type: "image"
         },
         {
-          src: "assets/gallery/corporate-thomas-3.jpg",
-          thumb: "assets/gallery/corporate-thomas-3-thumb.jpg",
-          alt: "Soirée dansante"
+          src: "assets/gallery/pro_3.mp4",
+
+          alt: "Soirée dansante",
+          type: "video"
         }
       ]
     },
@@ -68,19 +73,22 @@ const Testimonials = () => {
       quote: "Une équipe à l'écoute qui a su s'adapter à nos demandes tout au long de la soirée. Un grand merci !",
       gallery: [
         {
-          src: "assets/gallery/mariage-lucas-1.jpg",
-          thumb: "assets/gallery/mariage-lucas-1-thumb.jpg",
-          alt: "Entrée des mariés"
+          src: "assets/gallery/mariage-lucas-1.webp",
+          thumb: "assets/gallery/mariage-lucas-1-thumb.webp",
+          alt: "Entrée des mariés",
+          type: "image"
         },
         {
           src: "assets/gallery/mariage-lucas-2.jpg",
           thumb: "assets/gallery/mariage-lucas-2-thumb.jpg",
-          alt: "Dancefloor en action"
+          alt: "Dancefloor en action",
+          type: "image"
         },
         {
           src: "assets/gallery/mariage-lucas-4.jpg",
           thumb: "assets/gallery/mariage-lucas-4-thumb.jpg",
-          alt: "Show lumière"
+          alt: "Show lumière",
+          type: "image"
         }
       ]
     },
@@ -113,9 +121,12 @@ const Testimonials = () => {
 
   const handleGalleryOpen = (gallery, startIndex = 0) => {
     if (gallery && gallery.length > 0) {
-      setCurrentGallery(gallery);
-      setLightboxIndex(startIndex);
+      setSelectedItem(gallery[startIndex]);
     }
+  };
+
+  const handleCloseLightbox = () => {
+    setSelectedItem(null);
   };
 
   return (
@@ -177,16 +188,36 @@ const Testimonials = () => {
                         key={photo.src}
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleGalleryOpen(testimonial.gallery, photoIndex);
+                          setSelectedItem(photo);
                         }}
                         className="relative group/thumb w-24 h-16 rounded-lg overflow-hidden flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-[#FF2EBC] focus:ring-offset-2 focus:ring-offset-black"
                       >
-                        <img 
-                          src={photo.thumb} 
-                          alt={photo.alt}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-110"
-                        />
+                        {photo.type === "video" ? (
+                          <VideoThumbnail
+                            src={photo.src}
+                            thumb={photo.thumb}
+                            alt={photo.alt}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-110"
+                          />
+                        ) : (
+                          <img 
+                            src={photo.thumb} 
+                            alt={photo.alt}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-110"
+                          />
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-300"></div>
+                        
+                        {/* Icône de lecture pour les vidéos */}
+                        {photo.type === "video" && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="bg-black/50 rounded-full p-1">
+                              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                              </svg>
+                            </div>
+                          </div>
+                        )}
                       </button>
                     ))}
                     {testimonial.gallery.length > 3 && (
@@ -228,19 +259,36 @@ const Testimonials = () => {
           </motion.div>
         )}
 
-        {/* Lightbox Gallery */}
-        <Lightbox
-          open={lightboxIndex >= 0}
-          close={() => setLightboxIndex(-1)}
-          index={lightboxIndex}
-          slides={currentGallery}
-          styles={{
-            container: { backgroundColor: "rgba(0, 0, 0, 0.95)" },
-            button: { color: "#FF2EBC" },
-            navigationPrev: { backgroundColor: "rgba(255, 46, 188, 0.1)" },
-            navigationNext: { backgroundColor: "rgba(255, 46, 188, 0.1)" }
-          }}
-        />
+        {/* Lightbox personnalisé pour les images */}
+        {selectedItem && selectedItem.type === "image" && (
+          <div className="fixed inset-0 bg-black/95 flex items-center justify-center z-50">
+            <div className="relative w-full max-w-4xl mx-4">
+              <button
+                onClick={handleCloseLightbox}
+                className="absolute -top-12 right-0 text-white hover:text-[#FF2EBC] transition-colors duration-200 z-10"
+                aria-label="Fermer l'image"
+              >
+                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <img
+                src={selectedItem.src}
+                alt={selectedItem.alt}
+                className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Lightbox personnalisé pour les vidéos */}
+        {selectedItem && selectedItem.type === "video" && (
+          <VideoLightbox
+            src={selectedItem.src}
+            alt={selectedItem.alt}
+            onClose={handleCloseLightbox}
+          />
+        )}
       </div>
     </section>
   );
