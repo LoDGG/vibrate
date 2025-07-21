@@ -11,21 +11,27 @@ const Testimonials = () => {
     {
       firstName: "Marie",
       date: "Mai 2025",
-      eventType: "Mariage",
-      quote: "Une soirée magique ! L'ambiance était parfaite du cocktail jusqu'au bout de la nuit. Nos invités en parlent encore.",
-
+      eventType: "Anniversaire 35 ans",
+      quote: "J’étais sceptique quand on m’a proposé de faire appel à un DJ pour mon anniversaire… je pensais que c’était trop “gros” pour une soirée entre amis. Mais en vrai, ça a tout changé. L’ambiance est montée progressivement, ils ont passé nos sons préférés sans qu’on ait à demander quoi que ce soit, et tout le monde s’est mis à danser sans forcer.",
+      gallery: [
+        {
+          src: "assets/gallery/Soirée/Marie/Anniv.JPG",
+          alt: "Show lumière",
+          type: "image"
+        },
+      ]
     },
     {
       firstName: "Thomas",
       date: "Avril 2025",
       eventType: "Soirée d'entreprise",
-      quote: "Un professionnalisme remarquable. La transition entre les moments calmes et festifs était parfaitement orchestrée.",
+      quote: "On voulait une ambiance détendue mais qualitative pour notre afterwork client : pari réussi. Installation rapide, musique au top, lumière très soignée. Les collègues m’en parlent encore. On refera appel à eux sans hésiter",
 
     },
     {
       firstName: "Sandrine",
       date: "Mars 2025",
-      eventType: "Anniversaire",
+      eventType: "Soirée d'entreprise",
       quote: "Une ambiance incroyable pour mon seminaire ! Tout était parfait, de la playlist personnalisée aux jeux de lumière.",
       gallery: [
         {
@@ -45,34 +51,10 @@ const Testimonials = () => {
         },
       ]
     },
-    {
-      firstName: "Lucas",
-      date: "Février 2025",
-      eventType: "Mariage",
-      quote: "Une équipe à l'écoute qui a su s'adapter à nos demandes tout au long de la soirée. Un grand merci !",
-
-    },
-    {
-      firstName: "Emma",
-      date: "Janvier 2025",
-      eventType: "Soirée privée",
-      quote: "Ambiance de folie ! Le light show était incroyable et la playlist parfaitement adaptée à nos goûts."
-    }
   ];
 
   const extraTestimonials = [
-    {
-      firstName: "Antoine",
-      date: "Décembre 2024",
-      eventType: "Afterwork",
-      quote: "Une super ambiance pour notre afterwork de fin d'année. Tout le monde a adoré !"
-    },
-    {
-      firstName: "Julie",
-      date: "Novembre 2024",
-      eventType: "Mariage",
-      quote: "Des pros de A à Z. La transition cocktail/dîner/soirée était parfaite."
-    }
+
   ];
 
   const displayedTestimonials = isExpanded 
@@ -161,7 +143,7 @@ const Testimonials = () => {
                           />
                         ) : (
                           <img 
-                            src={photo.thumb} 
+                            src={photo.thumb || photo.src} 
                             alt={photo.alt}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-110"
                           />

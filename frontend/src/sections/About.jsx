@@ -27,11 +27,11 @@ export default function About() {
           viewport={{ once: true }}
           className="flex justify-center"
         >
-          <img
-            src={familyMockup}
+          {/* <img
+            //src={familyMockup}
             alt="L'équipe familiale Celebrise"
             className="w-full max-w-md rounded-lg shadow-neon"
-          />
+          /> */}
         </motion.div>
 
         {/* Paragraphe 1 */}

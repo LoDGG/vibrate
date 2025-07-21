@@ -30,10 +30,10 @@ export default function Footer() {
         <div>
           <h3 className="text-white font-semibold mb-4">Contact</h3>
           <ul className="space-y-2 text-zinc-400">
-            <li>📧 contact@vibrate.event</li>
-            <li>📞 06 00 00 00 00</li>
+            <li>📧 contact@vibrate.events</li>
+            {/* <li>📞 06 00 00 00 00</li> */}
             <li>📍 Basé à Melun (77)</li>
-            <li>📸 Instagram : @vibrate.events</li>
+            <li>📸 Instagram : @vibrate_dj</li>
           </ul>
         </div>
 
@@ -51,8 +51,7 @@ export default function Footer() {
 
       {/* Bas de page */}
       <div className="mt-10 text-center text-xs text-zinc-500 px-6">
-        Site hébergé par <span className="text-white">OVHcloud</span> — Directeur de la publication : <span className="text-white">Jean Dupont</span><br />
-        N° SIRET : 000 000 000 00000
+        Site hébergé par <span className="text-white">Hostinger</span><br />
       </div>
     </footer>
   )

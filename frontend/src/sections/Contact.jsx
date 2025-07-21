@@ -170,9 +170,9 @@ const formatDateFr = (isoDate) => {
 
           <div>
             <p className="text-gray-400">📝 Message *</p>
-            <textarea rows="5" name="message" value={formData.message} onChange={handleChange} placeholder="Ambiance souhaitée : festive et élégante
-Style musical : rock , variété française...
-Contraintes : fin soirée à 1h max , installation possible à partir de 16h seulement."
+            <textarea rows="5" name="message" value={formData.message} onChange={handleChange} placeholder="Ambiance souhaitée : je voudrais quelque chose de festif et élégant.
+Style musical : j’aime le rock et la variété française.
+Contraintes : je pense que la soirée se terminera vers 1h, la salle que j’ai louée n’est disponible qu’à partir de 16h."
               className="w-full px-4 py-3 bg-[#0A0A0A] border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#FF2EBC]"></textarea>
             {formErrors.message && <p className="text-red-400 text-sm mt-1">{formErrors.message}</p>}
           </div>

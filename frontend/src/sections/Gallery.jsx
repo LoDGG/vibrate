@@ -89,7 +89,7 @@ export default function Gallery() {
                   />
                 ) : (
                   <img
-                    src={item.thumb}
+                    src={item.thumb || item.src}
                     alt={item.alt}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
