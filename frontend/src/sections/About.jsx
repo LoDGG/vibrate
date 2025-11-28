@@ -29,7 +29,7 @@ export default function About() {
         >
           {/* <img
             //src={familyMockup}
-            alt="L'équipe familiale Celebrise"
+            alt="L'équipe familiale Vibrate"
             className="w-full max-w-md rounded-lg shadow-neon"
           /> */}
         </motion.div>
@@ -43,7 +43,7 @@ export default function About() {
           className="text-zinc-300 leading-relaxed text-lg"
         >
           Il y a des souvenirs que la lumière et la musique rendent inoubliables.
-          Un premier slow. Une chanson criée à pleins poumons. Une salle figée dans le silence, suspendue à une voix. Celebrise est née de cette conviction : 
+          Un premier slow. Une chanson criée à pleins poumons. Une salle figée dans le silence, suspendue à une voix. Vibrate est née de cette conviction : 
         </motion.p>
 
           {/* centered bold sentence */}
@@ -75,7 +75,7 @@ Et son fils, animé par le désir de transmettre, de valoriser et de faire rayon
           viewport={{ once: true }}
           className="text-zinc-300 leading-relaxed text-lg"
         >
-        Aujourd'hui, Celebrise met cette complicité au service de vos événements : <br />
+        Aujourd'hui, Vibrate met cette complicité au service de vos événements : <br />
         une maîtrise millimétrée portée par un regard neuf, pour vous offrir une expérience unique et sur mesure.</motion.p>
 
         {/* Paragraphe 4 */}

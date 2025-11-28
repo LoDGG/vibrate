@@ -49,7 +49,12 @@ const Services = () => {
 
         <div className="grid md:grid-cols-3 gap-10">
           {prestations.map((item, index) => (
-            <div key={index} className={`${cardBase} ${item.color}`}>
+            <a
+              key={index}
+              href="#contact"
+              className={`${cardBase} ${item.color}`}
+              aria-label={`En savoir plus sur ${item.title} et accéder au formulaire de contact`}
+            >
               <img src={item.img} alt={item.title} className="w-full h-56 object-cover transition group-hover:brightness-110" />
               <div className="p-6 pb-16">
                 <h3 className="text-2xl font-semibold text-white mb-3">{item.title}</h3>
@@ -58,7 +63,7 @@ const Services = () => {
                   +
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 🎨 Celebrise — Styles de base */
+/* 🎨 Vibrate — Styles de base */
 body {
   @apply bg-black text-softWhite font-body;
 }

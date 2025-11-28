@@ -43,7 +43,9 @@ app.post("/api/contact", async (req, res) => {
 
   // Configuration du transporteur SMTP (Nodemailer)
   const transporter = nodemailer.createTransport({
-    service: "Yandex", // ou autre : Gmail, OVH, etc.
+    host: process.env.MAIL_HOST, // ex: smtp.hostinger.com
+    port: Number(process.env.MAIL_PORT) || 465,
+    secure: (process.env.MAIL_SECURE || "true") === "true", // true si port 465
     auth: {
       user: process.env.MAIL_SENDER, // Adresse expéditrice authentifiée
       pass: process.env.MAIL_PASS,   // Mot de passe ou app password
