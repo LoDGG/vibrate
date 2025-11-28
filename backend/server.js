@@ -4,9 +4,17 @@ import cors from "cors";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import validator from "validator";
+import { readFileSync } from "fs";
 
 // 🔐 Charge les variables d'environnement (.env)
 dotenv.config();
+
+let logoBuffer = null;
+try {
+  logoBuffer = readFileSync(new URL("../frontend/public/vibrate_logo.png", import.meta.url));
+} catch (error) {
+  console.warn("⚠️ Impossible de charger le logo email :", error.message);
+}
 
 const app = express();
 
@@ -63,14 +71,79 @@ app.post("/api/contact", async (req, res) => {
         <h2>Nouvelle demande de contact</h2>
         <p><strong>Client :</strong> ${validator.escape(firstName)} ${validator.escape(lastName)}</p>
         <p><strong>Email :</strong> ${validator.escape(from)}</p>
-        <p><strong>Téléphone :</strong> ${validator.escape(phone)}</p>
+        <p><strong>Téléphone :</strong> ${validator.escape(phone || "Non renseigné")}</p>
         <p><strong>Type d'événement :</strong> ${validator.escape(type)}</p>
-        <p><strong>Date :</strong> ${validator.escape(date)}</p>
-        <p><strong>Lieu :</strong> ${validator.escape(lieu)}</p>
+        <p><strong>Date :</strong> ${validator.escape(date || "À préciser")}</p>
+        <p><strong>Lieu :</strong> ${validator.escape(lieu || "À préciser")}</p>
         <p><strong>Nombre de personnes :</strong> ${validator.escape(String(nombre))}</p>
         <p><strong>Message :</strong><br>${validator.escape(message)}</p>
       `,
     });
+
+    const safeFirstName = firstName ? validator.escape(firstName) : "Vibrate";
+
+    const confirmationMail = {
+      from: process.env.MAIL_SENDER,
+      to: from,
+      subject: "Vibrate – Nous avons bien reçu votre demande ✨",
+      html: `
+        <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-family:Arial,sans-serif;background-color:#f5f5f5;padding:24px 0;">
+          <tr>
+            <td align="center">
+              <table width="560" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#ffffff;border-radius:18px;padding:32px;border:1px solid #eeeeee;color:#111111;">
+                <tr>
+                  <td align="center" style="padding-bottom:24px;">
+                    ${
+                      logoBuffer
+                        ? '<img src="cid:vibrate-logo" alt="Vibrate" style="height:42px;display:block;" />'
+                        : '<span style="font-size:20px;font-weight:bold;letter-spacing:0.2em;color:#111;">VIBRATE</span>'
+                    }
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-size:16px;line-height:1.6;color:#333333;">
+                    <p style="margin:0 0 16px;">Hello ${safeFirstName},</p>
+                    <p style="margin:0 0 16px;">Merci d'avoir pris contact avec nous. Votre demande a bien été prise en compte et un membre de l'équipe prendra contact avec vous prochainement.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:24px;background-color:#fafafa;border:1px solid #f0f0f0;border-radius:12px;font-size:15px;line-height:1.5;color:#333333;">
+                    <p style="margin:0 0 10px;font-weight:bold;color:#ff2ebc;">Résumé rapide</p>
+                    <p style="margin:0;">
+                      💽 <strong>Type :</strong> ${validator.escape(type)}<br/>
+                      📅 <strong>Date :</strong> ${validator.escape(date || "À confirmer")}<br/>
+                      📍 <strong>Lieu :</strong> ${validator.escape(lieu || "À confirmer")}<br/>
+                      👤 <strong>Nombre de personnes :</strong> ${validator.escape(String(nombre))}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-size:15px;line-height:1.6;color:#333333;padding-top:24px;">
+                    <p style="margin:0 0 16px;">Besoin d'ajouter des précisions ? Répondez simplement à cet email ou contactez-nous sur <a href="mailto:event@vibrate.fr" style="color:#00a3ff;">event@vibrate.fr</a>.</p>
+                    <p style="margin:32px 0 0;">À très vite,<br/><strong>L'équipe Vibrate</strong></p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      `,
+      attachments: logoBuffer
+        ? [
+            {
+              filename: "vibrate_logo.png",
+              content: logoBuffer,
+              cid: "vibrate-logo",
+            },
+          ]
+        : [],
+    };
+
+    try {
+      await transporter.sendMail(confirmationMail);
+    } catch (confirmationError) {
+      console.error("Erreur envoi mail de confirmation :", confirmationError);
+    }
 
     res.status(200).json({ success: true, message: "Demande envoyée avec succès." });
   } catch (error) {
