@@ -19,5 +19,12 @@ export default defineConfig({
   server: {
     host: true,           // ← permet l’accès depuis d’autres appareils du réseau
     port: 5173,           // ← ou un autre si déjà utilisé
+    proxy: {
+      // Proxy des appels backend pendant le dev : /api/* → http://localhost:3001/api/*
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    },
   },
 });
